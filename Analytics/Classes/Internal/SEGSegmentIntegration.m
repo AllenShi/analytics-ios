@@ -257,6 +257,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     seg_dispatch_specific_sync(_serialQueue, block);
 }
 
+#if !TARGET_EXTENSION
 - (void)beginBackgroundTask
 {
     [self endBackgroundTask];
@@ -265,7 +266,9 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         [self endBackgroundTask];
     }];
 }
+#endif
 
+#if !TARGET_EXTENSION
 - (void)endBackgroundTask
 {
     [self dispatchBackgroundAndWait:^{
@@ -275,6 +278,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         }
     }];
 }
+#endif
 
 - (NSString *)description
 {
